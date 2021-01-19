@@ -97,6 +97,32 @@ class ShipInStore(pygame.sprite.Sprite):
                 save_data(data, scoreboard_data)
 
 
+class Explosion(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__(all_sprites)
+        self.frames = []
+        self.cut_sheet(load_image('explosion_animated.png'), 5, 4)
+        self.cur_frame = 0
+        self.image = self.frames[self.cur_frame]
+        self.rect = self.rect.move(x, y)
+        self.add(explosion_sprites)
+
+    def cut_sheet(self, sheet, columns, rows):
+        self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
+                                sheet.get_height() // rows)
+        for j in range(rows):
+            for i in range(columns):
+                frame_location = (self.rect.w * i, self.rect.h * j)
+                self.frames.append(sheet.subsurface(pygame.Rect(
+                    frame_location, self.rect.size)))
+
+    def update(self):
+        if self.cur_frame == len(self.frames) - 1:
+            self.kill()
+        self.cur_frame = (self.cur_frame + 1) % len(self.frames)
+        self.image = self.frames[self.cur_frame]
+
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__(all_sprites)
@@ -115,9 +141,9 @@ class Player(pygame.sprite.Sprite):
         self.speedx = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
-            self.speedx = -8
+            self.speedx = -9
         if keystate[pygame.K_RIGHT]:
-            self.speedx = 8
+            self.speedx = 9
         self.rect.x += self.speedx
         if self.rect.right > width:
             self.rect.right = width
@@ -150,8 +176,11 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.y += self.speedy
         if self.rect.bottom < 0:
             self.kill()
-        if pygame.sprite.spritecollide(self, meteor_sprites, True):
+        if pygame.sprite.spritecollide(self, meteor_sprites, False):
+            rect_meteor = pygame.sprite.spritecollide(self, meteor_sprites, True)[0].rect
+            pygame.mixer.Sound.play(explosion_sound)
             self.kill()
+            Explosion(rect_meteor.x - 10, rect_meteor.y - 10)
             MeteorPlay()
 
 
@@ -495,6 +524,7 @@ def play():
         player_sprite.update()
         meteor_sprites.update()
         coins_sprites.update()
+        explosion_sprites.update()
         coins_counter.count = data['COINS']
         screen.blit(*coins_counter.draw())
         screen.blit(*score.draw())
@@ -579,6 +609,8 @@ if __name__ == '__main__':
     shoot_sound = pygame.mixer.Sound('data/shoot.mp3')
     crash_sound = pygame.mixer.Sound('data/crash.mp3')
     crash_sound.set_volume(0.2)
+    explosion_sound = pygame.mixer.Sound('data/explosion_sound.mp3')
+    explosion_sound.set_volume(0.2)
 
     all_sprites = pygame.sprite.Group()
     menu_sprites = pygame.sprite.Group()
@@ -588,6 +620,7 @@ if __name__ == '__main__':
     scoreboard_sprites = pygame.sprite.Group()
     coins_sprites = pygame.sprite.Group()
     game_over_sprites = pygame.sprite.Group()
+    explosion_sprites = pygame.sprite.Group()
 
     clock = pygame.time.Clock()
 
