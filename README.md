@@ -9,4 +9,5 @@
 
 ***
 Скриншоты:
+
 ![Главное меню](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(3).png?raw=true)
