@@ -8,6 +8,8 @@
 * Для создания всей игры использовалась библиотека PyGame, запись данных происходит в файлы в формате json, соответственно былаа использована библиотека json, для работы этим форматом. Также используются библиотеки: random, os, sys.
 
 ***
+Видео: https://youtu.be/eCXk5LiX7Rs
+***
 Скриншоты:
 
 ![Главное меню](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(3).png?raw=true)
