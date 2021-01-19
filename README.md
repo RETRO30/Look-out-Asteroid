@@ -11,3 +11,8 @@
 Скриншоты:
 
 ![Главное меню](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(3).png?raw=true)
+![Таблица рекордов](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(1).png?raw=true)
+![Внутриигровой магазин](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(4).png?raw=true)
+![Скрин из игры](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(2).png?raw=true)
+![Скрин из игры](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(5).png?raw=true)
+![ГСкрин из игры](https://github.com/RETRO30/Look-out-Asteroid/blob/main/screenshots/screen%20(6).png?raw=true)
