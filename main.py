@@ -534,6 +534,8 @@ def play():
         pygame.display.flip()
         clock.tick(fps)
         score.count += 1
+    for explosion in explosion_sprites:
+        explosion.remove(all_sprites, explosion_sprites)
     for player in player_sprite:
         player.remove(all_sprites, player_sprite)
     for meteor in meteor_sprites:
