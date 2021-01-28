@@ -496,7 +496,7 @@ def game_over(score_count):
                 flag = True
         if not flag:
             scoreboard_data["scoreboard"].append({"name": input_box.text, "score": score_count})
-    scoreboard_data["scoreboard"] = sorted(scoreboard_data["scoreboard"], key=lambda x: x["score"], reverse=True)[:11]
+    scoreboard_data["scoreboard"] = sorted(scoreboard_data["scoreboard"], key=lambda x: x["score"], reverse=True)[:10]
     save_data(data, scoreboard_data)
     btn_back.remove(all_sprites)
 
